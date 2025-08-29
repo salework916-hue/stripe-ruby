@@ -9,39 +9,25 @@ module Stripe
     class ListParams < Stripe::RequestParams
       # The ID of the customer whose quotes will be retrieved.
       sig { returns(T.nilable(String)) }
-      def customer; end
-      sig { params(_customer: T.nilable(String)).returns(T.nilable(String)) }
-      def customer=(_customer); end
+      attr_accessor :customer
       # A cursor for use in pagination. `ending_before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list.
       sig { returns(T.nilable(String)) }
-      def ending_before; end
-      sig { params(_ending_before: T.nilable(String)).returns(T.nilable(String)) }
-      def ending_before=(_ending_before); end
+      attr_accessor :ending_before
       # Specifies which fields in the response should be expanded.
       sig { returns(T.nilable(T::Array[String])) }
-      def expand; end
-      sig { params(_expand: T.nilable(T::Array[String])).returns(T.nilable(T::Array[String])) }
-      def expand=(_expand); end
+      attr_accessor :expand
       # A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10.
       sig { returns(T.nilable(Integer)) }
-      def limit; end
-      sig { params(_limit: T.nilable(Integer)).returns(T.nilable(Integer)) }
-      def limit=(_limit); end
+      attr_accessor :limit
       # A cursor for use in pagination. `starting_after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list.
       sig { returns(T.nilable(String)) }
-      def starting_after; end
-      sig { params(_starting_after: T.nilable(String)).returns(T.nilable(String)) }
-      def starting_after=(_starting_after); end
+      attr_accessor :starting_after
       # The status of the quote.
       sig { returns(T.nilable(String)) }
-      def status; end
-      sig { params(_status: T.nilable(String)).returns(T.nilable(String)) }
-      def status=(_status); end
+      attr_accessor :status
       # Provides a list of quotes that are associated with the specified test clock. The response will not include quotes with test clocks if this and the customer parameter is not set.
       sig { returns(T.nilable(String)) }
-      def test_clock; end
-      sig { params(_test_clock: T.nilable(String)).returns(T.nilable(String)) }
-      def test_clock=(_test_clock); end
+      attr_accessor :test_clock
       sig {
         params(customer: T.nilable(String), ending_before: T.nilable(String), expand: T.nilable(T::Array[String]), limit: T.nilable(Integer), starting_after: T.nilable(String), status: T.nilable(String), test_clock: T.nilable(String)).void
        }
@@ -60,29 +46,19 @@ module Stripe
         class Liability < Stripe::RequestParams
           # The connected account being referenced when `type` is `account`.
           sig { returns(T.nilable(String)) }
-          def account; end
-          sig { params(_account: T.nilable(String)).returns(T.nilable(String)) }
-          def account=(_account); end
+          attr_accessor :account
           # Type of the account referenced in the request.
           sig { returns(String) }
-          def type; end
-          sig { params(_type: String).returns(String) }
-          def type=(_type); end
+          attr_accessor :type
           sig { params(account: T.nilable(String), type: String).void }
           def initialize(account: nil, type: nil); end
         end
         # Controls whether Stripe will automatically compute tax on the resulting invoices or subscriptions as well as the quote itself.
         sig { returns(T::Boolean) }
-        def enabled; end
-        sig { params(_enabled: T::Boolean).returns(T::Boolean) }
-        def enabled=(_enabled); end
+        attr_accessor :enabled
         # The account that's liable for tax. If set, the business address and tax registrations required to perform the tax calculation are loaded from this account. The tax transaction is returned in the report of the connected account.
         sig { returns(T.nilable(::Stripe::QuoteService::CreateParams::AutomaticTax::Liability)) }
-        def liability; end
-        sig {
-          params(_liability: T.nilable(::Stripe::QuoteService::CreateParams::AutomaticTax::Liability)).returns(T.nilable(::Stripe::QuoteService::CreateParams::AutomaticTax::Liability))
-         }
-        def liability=(_liability); end
+        attr_accessor :liability
         sig {
           params(enabled: T::Boolean, liability: T.nilable(::Stripe::QuoteService::CreateParams::AutomaticTax::Liability)).void
          }
@@ -91,19 +67,13 @@ module Stripe
       class Discount < Stripe::RequestParams
         # ID of the coupon to create a new discount for.
         sig { returns(T.nilable(String)) }
-        def coupon; end
-        sig { params(_coupon: T.nilable(String)).returns(T.nilable(String)) }
-        def coupon=(_coupon); end
+        attr_accessor :coupon
         # ID of an existing discount on the object (or one of its ancestors) to reuse.
         sig { returns(T.nilable(String)) }
-        def discount; end
-        sig { params(_discount: T.nilable(String)).returns(T.nilable(String)) }
-        def discount=(_discount); end
+        attr_accessor :discount
         # ID of the promotion code to create a new discount for.
         sig { returns(T.nilable(String)) }
-        def promotion_code; end
-        sig { params(_promotion_code: T.nilable(String)).returns(T.nilable(String)) }
-        def promotion_code=(_promotion_code); end
+        attr_accessor :promotion_code
         sig {
           params(coupon: T.nilable(String), discount: T.nilable(String), promotion_code: T.nilable(String)).void
          }
@@ -112,14 +82,10 @@ module Stripe
       class FromQuote < Stripe::RequestParams
         # Whether this quote is a revision of the previous quote.
         sig { returns(T.nilable(T::Boolean)) }
-        def is_revision; end
-        sig { params(_is_revision: T.nilable(T::Boolean)).returns(T.nilable(T::Boolean)) }
-        def is_revision=(_is_revision); end
+        attr_accessor :is_revision
         # The `id` of the quote that will be cloned.
         sig { returns(String) }
-        def quote; end
-        sig { params(_quote: String).returns(String) }
-        def quote=(_quote); end
+        attr_accessor :quote
         sig { params(is_revision: T.nilable(T::Boolean), quote: String).void }
         def initialize(is_revision: nil, quote: nil); end
       end
@@ -127,29 +93,19 @@ module Stripe
         class Issuer < Stripe::RequestParams
           # The connected account being referenced when `type` is `account`.
           sig { returns(T.nilable(String)) }
-          def account; end
-          sig { params(_account: T.nilable(String)).returns(T.nilable(String)) }
-          def account=(_account); end
+          attr_accessor :account
           # Type of the account referenced in the request.
           sig { returns(String) }
-          def type; end
-          sig { params(_type: String).returns(String) }
-          def type=(_type); end
+          attr_accessor :type
           sig { params(account: T.nilable(String), type: String).void }
           def initialize(account: nil, type: nil); end
         end
         # Number of days within which a customer must pay the invoice generated by this quote. This value will be `null` for quotes where `collection_method=charge_automatically`.
         sig { returns(T.nilable(Integer)) }
-        def days_until_due; end
-        sig { params(_days_until_due: T.nilable(Integer)).returns(T.nilable(Integer)) }
-        def days_until_due=(_days_until_due); end
+        attr_accessor :days_until_due
         # The connected account that issues the invoice. The invoice is presented with the branding and support information of the specified account.
         sig { returns(T.nilable(::Stripe::QuoteService::CreateParams::InvoiceSettings::Issuer)) }
-        def issuer; end
-        sig {
-          params(_issuer: T.nilable(::Stripe::QuoteService::CreateParams::InvoiceSettings::Issuer)).returns(T.nilable(::Stripe::QuoteService::CreateParams::InvoiceSettings::Issuer))
-         }
-        def issuer=(_issuer); end
+        attr_accessor :issuer
         sig {
           params(days_until_due: T.nilable(Integer), issuer: T.nilable(::Stripe::QuoteService::CreateParams::InvoiceSettings::Issuer)).void
          }
@@ -159,19 +115,13 @@ module Stripe
         class Discount < Stripe::RequestParams
           # ID of the coupon to create a new discount for.
           sig { returns(T.nilable(String)) }
-          def coupon; end
-          sig { params(_coupon: T.nilable(String)).returns(T.nilable(String)) }
-          def coupon=(_coupon); end
+          attr_accessor :coupon
           # ID of an existing discount on the object (or one of its ancestors) to reuse.
           sig { returns(T.nilable(String)) }
-          def discount; end
-          sig { params(_discount: T.nilable(String)).returns(T.nilable(String)) }
-          def discount=(_discount); end
+          attr_accessor :discount
           # ID of the promotion code to create a new discount for.
           sig { returns(T.nilable(String)) }
-          def promotion_code; end
-          sig { params(_promotion_code: T.nilable(String)).returns(T.nilable(String)) }
-          def promotion_code=(_promotion_code); end
+          attr_accessor :promotion_code
           sig {
             params(coupon: T.nilable(String), discount: T.nilable(String), promotion_code: T.nilable(String)).void
            }
@@ -181,51 +131,33 @@ module Stripe
           class Recurring < Stripe::RequestParams
             # Specifies billing frequency. Either `day`, `week`, `month` or `year`.
             sig { returns(String) }
-            def interval; end
-            sig { params(_interval: String).returns(String) }
-            def interval=(_interval); end
+            attr_accessor :interval
             # The number of intervals between subscription billings. For example, `interval=month` and `interval_count=3` bills every 3 months. Maximum of three years interval allowed (3 years, 36 months, or 156 weeks).
             sig { returns(T.nilable(Integer)) }
-            def interval_count; end
-            sig { params(_interval_count: T.nilable(Integer)).returns(T.nilable(Integer)) }
-            def interval_count=(_interval_count); end
+            attr_accessor :interval_count
             sig { params(interval: String, interval_count: T.nilable(Integer)).void }
             def initialize(interval: nil, interval_count: nil); end
           end
           # Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
           sig { returns(String) }
-          def currency; end
-          sig { params(_currency: String).returns(String) }
-          def currency=(_currency); end
+          attr_accessor :currency
           # The ID of the [Product](https://docs.stripe.com/api/products) that this [Price](https://docs.stripe.com/api/prices) will belong to.
           sig { returns(String) }
-          def product; end
-          sig { params(_product: String).returns(String) }
-          def product=(_product); end
+          attr_accessor :product
           # The recurring components of a price such as `interval` and `interval_count`.
           sig {
             returns(T.nilable(::Stripe::QuoteService::CreateParams::LineItem::PriceData::Recurring))
            }
-          def recurring; end
-          sig {
-            params(_recurring: T.nilable(::Stripe::QuoteService::CreateParams::LineItem::PriceData::Recurring)).returns(T.nilable(::Stripe::QuoteService::CreateParams::LineItem::PriceData::Recurring))
-           }
-          def recurring=(_recurring); end
+          attr_accessor :recurring
           # Only required if a [default tax behavior](https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of `inclusive`, `exclusive`, or `unspecified`. Once specified as either `inclusive` or `exclusive`, it cannot be changed.
           sig { returns(T.nilable(String)) }
-          def tax_behavior; end
-          sig { params(_tax_behavior: T.nilable(String)).returns(T.nilable(String)) }
-          def tax_behavior=(_tax_behavior); end
+          attr_accessor :tax_behavior
           # A positive integer in cents (or local equivalent) (or 0 for a free price) representing how much to charge.
           sig { returns(T.nilable(Integer)) }
-          def unit_amount; end
-          sig { params(_unit_amount: T.nilable(Integer)).returns(T.nilable(Integer)) }
-          def unit_amount=(_unit_amount); end
+          attr_accessor :unit_amount
           # Same as `unit_amount`, but accepts a decimal value in cents (or local equivalent) with at most 12 decimal places. Only one of `unit_amount` and `unit_amount_decimal` can be set.
           sig { returns(T.nilable(String)) }
-          def unit_amount_decimal; end
-          sig { params(_unit_amount_decimal: T.nilable(String)).returns(T.nilable(String)) }
-          def unit_amount_decimal=(_unit_amount_decimal); end
+          attr_accessor :unit_amount_decimal
           sig {
             params(currency: String, product: String, recurring: T.nilable(::Stripe::QuoteService::CreateParams::LineItem::PriceData::Recurring), tax_behavior: T.nilable(String), unit_amount: T.nilable(Integer), unit_amount_decimal: T.nilable(String)).void
            }
@@ -242,35 +174,19 @@ module Stripe
         sig {
           returns(T.nilable(T.any(String, T::Array[::Stripe::QuoteService::CreateParams::LineItem::Discount])))
          }
-        def discounts; end
-        sig {
-          params(_discounts: T.nilable(T.any(String, T::Array[::Stripe::QuoteService::CreateParams::LineItem::Discount]))).returns(T.nilable(T.any(String, T::Array[::Stripe::QuoteService::CreateParams::LineItem::Discount])))
-         }
-        def discounts=(_discounts); end
+        attr_accessor :discounts
         # The ID of the price object. One of `price` or `price_data` is required.
         sig { returns(T.nilable(String)) }
-        def price; end
-        sig { params(_price: T.nilable(String)).returns(T.nilable(String)) }
-        def price=(_price); end
+        attr_accessor :price
         # Data used to generate a new [Price](https://stripe.com/docs/api/prices) object inline. One of `price` or `price_data` is required.
         sig { returns(T.nilable(::Stripe::QuoteService::CreateParams::LineItem::PriceData)) }
-        def price_data; end
-        sig {
-          params(_price_data: T.nilable(::Stripe::QuoteService::CreateParams::LineItem::PriceData)).returns(T.nilable(::Stripe::QuoteService::CreateParams::LineItem::PriceData))
-         }
-        def price_data=(_price_data); end
+        attr_accessor :price_data
         # The quantity of the line item.
         sig { returns(T.nilable(Integer)) }
-        def quantity; end
-        sig { params(_quantity: T.nilable(Integer)).returns(T.nilable(Integer)) }
-        def quantity=(_quantity); end
+        attr_accessor :quantity
         # The tax rates which apply to the line item. When set, the `default_tax_rates` on the quote do not apply to this line item.
         sig { returns(T.nilable(T.any(String, T::Array[String]))) }
-        def tax_rates; end
-        sig {
-          params(_tax_rates: T.nilable(T.any(String, T::Array[String]))).returns(T.nilable(T.any(String, T::Array[String])))
-         }
-        def tax_rates=(_tax_rates); end
+        attr_accessor :tax_rates
         sig {
           params(discounts: T.nilable(T.any(String, T::Array[::Stripe::QuoteService::CreateParams::LineItem::Discount])), price: T.nilable(String), price_data: T.nilable(::Stripe::QuoteService::CreateParams::LineItem::PriceData), quantity: T.nilable(Integer), tax_rates: T.nilable(T.any(String, T::Array[String]))).void
          }
@@ -286,9 +202,7 @@ module Stripe
         class BillingMode < Stripe::RequestParams
           # Controls the calculation and orchestration of prorations and invoices for subscriptions.
           sig { returns(String) }
-          def type; end
-          sig { params(_type: String).returns(String) }
-          def type=(_type); end
+          attr_accessor :type
           sig { params(type: String).void }
           def initialize(type: nil); end
         end
@@ -296,37 +210,19 @@ module Stripe
         sig {
           returns(T.nilable(::Stripe::QuoteService::CreateParams::SubscriptionData::BillingMode))
          }
-        def billing_mode; end
-        sig {
-          params(_billing_mode: T.nilable(::Stripe::QuoteService::CreateParams::SubscriptionData::BillingMode)).returns(T.nilable(::Stripe::QuoteService::CreateParams::SubscriptionData::BillingMode))
-         }
-        def billing_mode=(_billing_mode); end
+        attr_accessor :billing_mode
         # The subscription's description, meant to be displayable to the customer. Use this field to optionally store an explanation of the subscription for rendering in Stripe surfaces and certain local payment methods UIs.
         sig { returns(T.nilable(String)) }
-        def description; end
-        sig { params(_description: T.nilable(String)).returns(T.nilable(String)) }
-        def description=(_description); end
+        attr_accessor :description
         # When creating a new subscription, the date of which the subscription schedule will start after the quote is accepted. The `effective_date` is ignored if it is in the past when the quote is accepted.
         sig { returns(T.nilable(T.any(String, T.any(String, Integer)))) }
-        def effective_date; end
-        sig {
-          params(_effective_date: T.nilable(T.any(String, T.any(String, Integer)))).returns(T.nilable(T.any(String, T.any(String, Integer))))
-         }
-        def effective_date=(_effective_date); end
+        attr_accessor :effective_date
         # Set of [key-value pairs](https://stripe.com/docs/api/metadata) that will set metadata on the subscription or subscription schedule when the quote is accepted. If a recurring price is included in `line_items`, this field will be passed to the resulting subscription's `metadata` field. If `subscription_data.effective_date` is used, this field will be passed to the resulting subscription schedule's `phases.metadata` field. Unlike object-level metadata, this field is declarative. Updates will clear prior values.
         sig { returns(T.nilable(T::Hash[String, String])) }
-        def metadata; end
-        sig {
-          params(_metadata: T.nilable(T::Hash[String, String])).returns(T.nilable(T::Hash[String, String]))
-         }
-        def metadata=(_metadata); end
+        attr_accessor :metadata
         # Integer representing the number of trial period days before the customer is charged for the first time.
         sig { returns(T.nilable(T.any(String, Integer))) }
-        def trial_period_days; end
-        sig {
-          params(_trial_period_days: T.nilable(T.any(String, Integer))).returns(T.nilable(T.any(String, Integer)))
-         }
-        def trial_period_days=(_trial_period_days); end
+        attr_accessor :trial_period_days
         sig {
           params(billing_mode: T.nilable(::Stripe::QuoteService::CreateParams::SubscriptionData::BillingMode), description: T.nilable(String), effective_date: T.nilable(T.any(String, T.any(String, Integer))), metadata: T.nilable(T::Hash[String, String]), trial_period_days: T.nilable(T.any(String, Integer))).void
          }
@@ -341,19 +237,13 @@ module Stripe
       class TransferData < Stripe::RequestParams
         # The amount that will be transferred automatically when the invoice is paid. If no amount is set, the full amount is transferred. There cannot be any line items with recurring prices when using this field.
         sig { returns(T.nilable(Integer)) }
-        def amount; end
-        sig { params(_amount: T.nilable(Integer)).returns(T.nilable(Integer)) }
-        def amount=(_amount); end
+        attr_accessor :amount
         # A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice total that will be transferred to the destination account. By default, the entire amount is transferred to the destination. There must be at least 1 line item with a recurring price to use this field.
         sig { returns(T.nilable(Float)) }
-        def amount_percent; end
-        sig { params(_amount_percent: T.nilable(Float)).returns(T.nilable(Float)) }
-        def amount_percent=(_amount_percent); end
+        attr_accessor :amount_percent
         # ID of an existing, connected Stripe account.
         sig { returns(String) }
-        def destination; end
-        sig { params(_destination: String).returns(String) }
-        def destination=(_destination); end
+        attr_accessor :destination
         sig {
           params(amount: T.nilable(Integer), amount_percent: T.nilable(Float), destination: String).void
          }
@@ -361,128 +251,66 @@ module Stripe
       end
       # The amount of the application fee (if any) that will be requested to be applied to the payment and transferred to the application owner's Stripe account. There cannot be any line items with recurring prices when using this field.
       sig { returns(T.nilable(T.any(String, Integer))) }
-      def application_fee_amount; end
-      sig {
-        params(_application_fee_amount: T.nilable(T.any(String, Integer))).returns(T.nilable(T.any(String, Integer)))
-       }
-      def application_fee_amount=(_application_fee_amount); end
+      attr_accessor :application_fee_amount
       # A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice total that will be transferred to the application owner's Stripe account. There must be at least 1 line item with a recurring price to use this field.
       sig { returns(T.nilable(T.any(String, Float))) }
-      def application_fee_percent; end
-      sig {
-        params(_application_fee_percent: T.nilable(T.any(String, Float))).returns(T.nilable(T.any(String, Float)))
-       }
-      def application_fee_percent=(_application_fee_percent); end
+      attr_accessor :application_fee_percent
       # Settings for automatic tax lookup for this quote and resulting invoices and subscriptions.
       sig { returns(T.nilable(::Stripe::QuoteService::CreateParams::AutomaticTax)) }
-      def automatic_tax; end
-      sig {
-        params(_automatic_tax: T.nilable(::Stripe::QuoteService::CreateParams::AutomaticTax)).returns(T.nilable(::Stripe::QuoteService::CreateParams::AutomaticTax))
-       }
-      def automatic_tax=(_automatic_tax); end
+      attr_accessor :automatic_tax
       # Either `charge_automatically`, or `send_invoice`. When charging automatically, Stripe will attempt to pay invoices at the end of the subscription cycle or at invoice finalization using the default payment method attached to the subscription or customer. When sending an invoice, Stripe will email your customer an invoice with payment instructions and mark the subscription as `active`. Defaults to `charge_automatically`.
       sig { returns(T.nilable(String)) }
-      def collection_method; end
-      sig { params(_collection_method: T.nilable(String)).returns(T.nilable(String)) }
-      def collection_method=(_collection_method); end
+      attr_accessor :collection_method
       # The customer for which this quote belongs to. A customer is required before finalizing the quote. Once specified, it cannot be changed.
       sig { returns(T.nilable(String)) }
-      def customer; end
-      sig { params(_customer: T.nilable(String)).returns(T.nilable(String)) }
-      def customer=(_customer); end
+      attr_accessor :customer
       # The tax rates that will apply to any line item that does not have `tax_rates` set.
       sig { returns(T.nilable(T.any(String, T::Array[String]))) }
-      def default_tax_rates; end
-      sig {
-        params(_default_tax_rates: T.nilable(T.any(String, T::Array[String]))).returns(T.nilable(T.any(String, T::Array[String])))
-       }
-      def default_tax_rates=(_default_tax_rates); end
+      attr_accessor :default_tax_rates
       # A description that will be displayed on the quote PDF. If no value is passed, the default description configured in your [quote template settings](https://dashboard.stripe.com/settings/billing/quote) will be used.
       sig { returns(T.nilable(String)) }
-      def description; end
-      sig { params(_description: T.nilable(String)).returns(T.nilable(String)) }
-      def description=(_description); end
+      attr_accessor :description
       # The discounts applied to the quote.
       sig {
         returns(T.nilable(T.any(String, T::Array[::Stripe::QuoteService::CreateParams::Discount])))
        }
-      def discounts; end
-      sig {
-        params(_discounts: T.nilable(T.any(String, T::Array[::Stripe::QuoteService::CreateParams::Discount]))).returns(T.nilable(T.any(String, T::Array[::Stripe::QuoteService::CreateParams::Discount])))
-       }
-      def discounts=(_discounts); end
+      attr_accessor :discounts
       # Specifies which fields in the response should be expanded.
       sig { returns(T.nilable(T::Array[String])) }
-      def expand; end
-      sig { params(_expand: T.nilable(T::Array[String])).returns(T.nilable(T::Array[String])) }
-      def expand=(_expand); end
+      attr_accessor :expand
       # A future timestamp on which the quote will be canceled if in `open` or `draft` status. Measured in seconds since the Unix epoch. If no value is passed, the default expiration date configured in your [quote template settings](https://dashboard.stripe.com/settings/billing/quote) will be used.
       sig { returns(T.nilable(Integer)) }
-      def expires_at; end
-      sig { params(_expires_at: T.nilable(Integer)).returns(T.nilable(Integer)) }
-      def expires_at=(_expires_at); end
+      attr_accessor :expires_at
       # A footer that will be displayed on the quote PDF. If no value is passed, the default footer configured in your [quote template settings](https://dashboard.stripe.com/settings/billing/quote) will be used.
       sig { returns(T.nilable(String)) }
-      def footer; end
-      sig { params(_footer: T.nilable(String)).returns(T.nilable(String)) }
-      def footer=(_footer); end
+      attr_accessor :footer
       # Clone an existing quote. The new quote will be created in `status=draft`. When using this parameter, you cannot specify any other parameters except for `expires_at`.
       sig { returns(T.nilable(::Stripe::QuoteService::CreateParams::FromQuote)) }
-      def from_quote; end
-      sig {
-        params(_from_quote: T.nilable(::Stripe::QuoteService::CreateParams::FromQuote)).returns(T.nilable(::Stripe::QuoteService::CreateParams::FromQuote))
-       }
-      def from_quote=(_from_quote); end
+      attr_accessor :from_quote
       # A header that will be displayed on the quote PDF. If no value is passed, the default header configured in your [quote template settings](https://dashboard.stripe.com/settings/billing/quote) will be used.
       sig { returns(T.nilable(String)) }
-      def header; end
-      sig { params(_header: T.nilable(String)).returns(T.nilable(String)) }
-      def header=(_header); end
+      attr_accessor :header
       # All invoices will be billed using the specified settings.
       sig { returns(T.nilable(::Stripe::QuoteService::CreateParams::InvoiceSettings)) }
-      def invoice_settings; end
-      sig {
-        params(_invoice_settings: T.nilable(::Stripe::QuoteService::CreateParams::InvoiceSettings)).returns(T.nilable(::Stripe::QuoteService::CreateParams::InvoiceSettings))
-       }
-      def invoice_settings=(_invoice_settings); end
+      attr_accessor :invoice_settings
       # A list of line items the customer is being quoted for. Each line item includes information about the product, the quantity, and the resulting cost.
       sig { returns(T.nilable(T::Array[::Stripe::QuoteService::CreateParams::LineItem])) }
-      def line_items; end
-      sig {
-        params(_line_items: T.nilable(T::Array[::Stripe::QuoteService::CreateParams::LineItem])).returns(T.nilable(T::Array[::Stripe::QuoteService::CreateParams::LineItem]))
-       }
-      def line_items=(_line_items); end
+      attr_accessor :line_items
       # Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`.
       sig { returns(T.nilable(T::Hash[String, String])) }
-      def metadata; end
-      sig {
-        params(_metadata: T.nilable(T::Hash[String, String])).returns(T.nilable(T::Hash[String, String]))
-       }
-      def metadata=(_metadata); end
+      attr_accessor :metadata
       # The account on behalf of which to charge.
       sig { returns(T.nilable(String)) }
-      def on_behalf_of; end
-      sig { params(_on_behalf_of: T.nilable(String)).returns(T.nilable(String)) }
-      def on_behalf_of=(_on_behalf_of); end
+      attr_accessor :on_behalf_of
       # When creating a subscription or subscription schedule, the specified configuration data will be used. There must be at least one line item with a recurring price for a subscription or subscription schedule to be created. A subscription schedule is created if `subscription_data[effective_date]` is present and in the future, otherwise a subscription is created.
       sig { returns(T.nilable(::Stripe::QuoteService::CreateParams::SubscriptionData)) }
-      def subscription_data; end
-      sig {
-        params(_subscription_data: T.nilable(::Stripe::QuoteService::CreateParams::SubscriptionData)).returns(T.nilable(::Stripe::QuoteService::CreateParams::SubscriptionData))
-       }
-      def subscription_data=(_subscription_data); end
+      attr_accessor :subscription_data
       # ID of the test clock to attach to the quote.
       sig { returns(T.nilable(String)) }
-      def test_clock; end
-      sig { params(_test_clock: T.nilable(String)).returns(T.nilable(String)) }
-      def test_clock=(_test_clock); end
+      attr_accessor :test_clock
       # The data with which to automatically create a Transfer for each of the invoices.
       sig { returns(T.nilable(T.any(String, ::Stripe::QuoteService::CreateParams::TransferData))) }
-      def transfer_data; end
-      sig {
-        params(_transfer_data: T.nilable(T.any(String, ::Stripe::QuoteService::CreateParams::TransferData))).returns(T.nilable(T.any(String, ::Stripe::QuoteService::CreateParams::TransferData)))
-       }
-      def transfer_data=(_transfer_data); end
+      attr_accessor :transfer_data
       sig {
         params(application_fee_amount: T.nilable(T.any(String, Integer)), application_fee_percent: T.nilable(T.any(String, Float)), automatic_tax: T.nilable(::Stripe::QuoteService::CreateParams::AutomaticTax), collection_method: T.nilable(String), customer: T.nilable(String), default_tax_rates: T.nilable(T.any(String, T::Array[String])), description: T.nilable(String), discounts: T.nilable(T.any(String, T::Array[::Stripe::QuoteService::CreateParams::Discount])), expand: T.nilable(T::Array[String]), expires_at: T.nilable(Integer), footer: T.nilable(String), from_quote: T.nilable(::Stripe::QuoteService::CreateParams::FromQuote), header: T.nilable(String), invoice_settings: T.nilable(::Stripe::QuoteService::CreateParams::InvoiceSettings), line_items: T.nilable(T::Array[::Stripe::QuoteService::CreateParams::LineItem]), metadata: T.nilable(T::Hash[String, String]), on_behalf_of: T.nilable(String), subscription_data: T.nilable(::Stripe::QuoteService::CreateParams::SubscriptionData), test_clock: T.nilable(String), transfer_data: T.nilable(T.any(String, ::Stripe::QuoteService::CreateParams::TransferData))).void
        }
@@ -512,9 +340,7 @@ module Stripe
     class RetrieveParams < Stripe::RequestParams
       # Specifies which fields in the response should be expanded.
       sig { returns(T.nilable(T::Array[String])) }
-      def expand; end
-      sig { params(_expand: T.nilable(T::Array[String])).returns(T.nilable(T::Array[String])) }
-      def expand=(_expand); end
+      attr_accessor :expand
       sig { params(expand: T.nilable(T::Array[String])).void }
       def initialize(expand: nil); end
     end
@@ -523,29 +349,19 @@ module Stripe
         class Liability < Stripe::RequestParams
           # The connected account being referenced when `type` is `account`.
           sig { returns(T.nilable(String)) }
-          def account; end
-          sig { params(_account: T.nilable(String)).returns(T.nilable(String)) }
-          def account=(_account); end
+          attr_accessor :account
           # Type of the account referenced in the request.
           sig { returns(String) }
-          def type; end
-          sig { params(_type: String).returns(String) }
-          def type=(_type); end
+          attr_accessor :type
           sig { params(account: T.nilable(String), type: String).void }
           def initialize(account: nil, type: nil); end
         end
         # Controls whether Stripe will automatically compute tax on the resulting invoices or subscriptions as well as the quote itself.
         sig { returns(T::Boolean) }
-        def enabled; end
-        sig { params(_enabled: T::Boolean).returns(T::Boolean) }
-        def enabled=(_enabled); end
+        attr_accessor :enabled
         # The account that's liable for tax. If set, the business address and tax registrations required to perform the tax calculation are loaded from this account. The tax transaction is returned in the report of the connected account.
         sig { returns(T.nilable(::Stripe::QuoteService::UpdateParams::AutomaticTax::Liability)) }
-        def liability; end
-        sig {
-          params(_liability: T.nilable(::Stripe::QuoteService::UpdateParams::AutomaticTax::Liability)).returns(T.nilable(::Stripe::QuoteService::UpdateParams::AutomaticTax::Liability))
-         }
-        def liability=(_liability); end
+        attr_accessor :liability
         sig {
           params(enabled: T::Boolean, liability: T.nilable(::Stripe::QuoteService::UpdateParams::AutomaticTax::Liability)).void
          }
@@ -554,19 +370,13 @@ module Stripe
       class Discount < Stripe::RequestParams
         # ID of the coupon to create a new discount for.
         sig { returns(T.nilable(String)) }
-        def coupon; end
-        sig { params(_coupon: T.nilable(String)).returns(T.nilable(String)) }
-        def coupon=(_coupon); end
+        attr_accessor :coupon
         # ID of an existing discount on the object (or one of its ancestors) to reuse.
         sig { returns(T.nilable(String)) }
-        def discount; end
-        sig { params(_discount: T.nilable(String)).returns(T.nilable(String)) }
-        def discount=(_discount); end
+        attr_accessor :discount
         # ID of the promotion code to create a new discount for.
         sig { returns(T.nilable(String)) }
-        def promotion_code; end
-        sig { params(_promotion_code: T.nilable(String)).returns(T.nilable(String)) }
-        def promotion_code=(_promotion_code); end
+        attr_accessor :promotion_code
         sig {
           params(coupon: T.nilable(String), discount: T.nilable(String), promotion_code: T.nilable(String)).void
          }
@@ -576,29 +386,19 @@ module Stripe
         class Issuer < Stripe::RequestParams
           # The connected account being referenced when `type` is `account`.
           sig { returns(T.nilable(String)) }
-          def account; end
-          sig { params(_account: T.nilable(String)).returns(T.nilable(String)) }
-          def account=(_account); end
+          attr_accessor :account
           # Type of the account referenced in the request.
           sig { returns(String) }
-          def type; end
-          sig { params(_type: String).returns(String) }
-          def type=(_type); end
+          attr_accessor :type
           sig { params(account: T.nilable(String), type: String).void }
           def initialize(account: nil, type: nil); end
         end
         # Number of days within which a customer must pay the invoice generated by this quote. This value will be `null` for quotes where `collection_method=charge_automatically`.
         sig { returns(T.nilable(Integer)) }
-        def days_until_due; end
-        sig { params(_days_until_due: T.nilable(Integer)).returns(T.nilable(Integer)) }
-        def days_until_due=(_days_until_due); end
+        attr_accessor :days_until_due
         # The connected account that issues the invoice. The invoice is presented with the branding and support information of the specified account.
         sig { returns(T.nilable(::Stripe::QuoteService::UpdateParams::InvoiceSettings::Issuer)) }
-        def issuer; end
-        sig {
-          params(_issuer: T.nilable(::Stripe::QuoteService::UpdateParams::InvoiceSettings::Issuer)).returns(T.nilable(::Stripe::QuoteService::UpdateParams::InvoiceSettings::Issuer))
-         }
-        def issuer=(_issuer); end
+        attr_accessor :issuer
         sig {
           params(days_until_due: T.nilable(Integer), issuer: T.nilable(::Stripe::QuoteService::UpdateParams::InvoiceSettings::Issuer)).void
          }
@@ -608,19 +408,13 @@ module Stripe
         class Discount < Stripe::RequestParams
           # ID of the coupon to create a new discount for.
           sig { returns(T.nilable(String)) }
-          def coupon; end
-          sig { params(_coupon: T.nilable(String)).returns(T.nilable(String)) }
-          def coupon=(_coupon); end
+          attr_accessor :coupon
           # ID of an existing discount on the object (or one of its ancestors) to reuse.
           sig { returns(T.nilable(String)) }
-          def discount; end
-          sig { params(_discount: T.nilable(String)).returns(T.nilable(String)) }
-          def discount=(_discount); end
+          attr_accessor :discount
           # ID of the promotion code to create a new discount for.
           sig { returns(T.nilable(String)) }
-          def promotion_code; end
-          sig { params(_promotion_code: T.nilable(String)).returns(T.nilable(String)) }
-          def promotion_code=(_promotion_code); end
+          attr_accessor :promotion_code
           sig {
             params(coupon: T.nilable(String), discount: T.nilable(String), promotion_code: T.nilable(String)).void
            }
@@ -630,51 +424,33 @@ module Stripe
           class Recurring < Stripe::RequestParams
             # Specifies billing frequency. Either `day`, `week`, `month` or `year`.
             sig { returns(String) }
-            def interval; end
-            sig { params(_interval: String).returns(String) }
-            def interval=(_interval); end
+            attr_accessor :interval
             # The number of intervals between subscription billings. For example, `interval=month` and `interval_count=3` bills every 3 months. Maximum of three years interval allowed (3 years, 36 months, or 156 weeks).
             sig { returns(T.nilable(Integer)) }
-            def interval_count; end
-            sig { params(_interval_count: T.nilable(Integer)).returns(T.nilable(Integer)) }
-            def interval_count=(_interval_count); end
+            attr_accessor :interval_count
             sig { params(interval: String, interval_count: T.nilable(Integer)).void }
             def initialize(interval: nil, interval_count: nil); end
           end
           # Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
           sig { returns(String) }
-          def currency; end
-          sig { params(_currency: String).returns(String) }
-          def currency=(_currency); end
+          attr_accessor :currency
           # The ID of the [Product](https://docs.stripe.com/api/products) that this [Price](https://docs.stripe.com/api/prices) will belong to.
           sig { returns(String) }
-          def product; end
-          sig { params(_product: String).returns(String) }
-          def product=(_product); end
+          attr_accessor :product
           # The recurring components of a price such as `interval` and `interval_count`.
           sig {
             returns(T.nilable(::Stripe::QuoteService::UpdateParams::LineItem::PriceData::Recurring))
            }
-          def recurring; end
-          sig {
-            params(_recurring: T.nilable(::Stripe::QuoteService::UpdateParams::LineItem::PriceData::Recurring)).returns(T.nilable(::Stripe::QuoteService::UpdateParams::LineItem::PriceData::Recurring))
-           }
-          def recurring=(_recurring); end
+          attr_accessor :recurring
           # Only required if a [default tax behavior](https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended)) was not provided in the Stripe Tax settings. Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of `inclusive`, `exclusive`, or `unspecified`. Once specified as either `inclusive` or `exclusive`, it cannot be changed.
           sig { returns(T.nilable(String)) }
-          def tax_behavior; end
-          sig { params(_tax_behavior: T.nilable(String)).returns(T.nilable(String)) }
-          def tax_behavior=(_tax_behavior); end
+          attr_accessor :tax_behavior
           # A positive integer in cents (or local equivalent) (or 0 for a free price) representing how much to charge.
           sig { returns(T.nilable(Integer)) }
-          def unit_amount; end
-          sig { params(_unit_amount: T.nilable(Integer)).returns(T.nilable(Integer)) }
-          def unit_amount=(_unit_amount); end
+          attr_accessor :unit_amount
           # Same as `unit_amount`, but accepts a decimal value in cents (or local equivalent) with at most 12 decimal places. Only one of `unit_amount` and `unit_amount_decimal` can be set.
           sig { returns(T.nilable(String)) }
-          def unit_amount_decimal; end
-          sig { params(_unit_amount_decimal: T.nilable(String)).returns(T.nilable(String)) }
-          def unit_amount_decimal=(_unit_amount_decimal); end
+          attr_accessor :unit_amount_decimal
           sig {
             params(currency: String, product: String, recurring: T.nilable(::Stripe::QuoteService::UpdateParams::LineItem::PriceData::Recurring), tax_behavior: T.nilable(String), unit_amount: T.nilable(Integer), unit_amount_decimal: T.nilable(String)).void
            }
@@ -691,40 +467,22 @@ module Stripe
         sig {
           returns(T.nilable(T.any(String, T::Array[::Stripe::QuoteService::UpdateParams::LineItem::Discount])))
          }
-        def discounts; end
-        sig {
-          params(_discounts: T.nilable(T.any(String, T::Array[::Stripe::QuoteService::UpdateParams::LineItem::Discount]))).returns(T.nilable(T.any(String, T::Array[::Stripe::QuoteService::UpdateParams::LineItem::Discount])))
-         }
-        def discounts=(_discounts); end
+        attr_accessor :discounts
         # The ID of an existing line item on the quote.
         sig { returns(T.nilable(String)) }
-        def id; end
-        sig { params(_id: T.nilable(String)).returns(T.nilable(String)) }
-        def id=(_id); end
+        attr_accessor :id
         # The ID of the price object. One of `price` or `price_data` is required.
         sig { returns(T.nilable(String)) }
-        def price; end
-        sig { params(_price: T.nilable(String)).returns(T.nilable(String)) }
-        def price=(_price); end
+        attr_accessor :price
         # Data used to generate a new [Price](https://stripe.com/docs/api/prices) object inline. One of `price` or `price_data` is required.
         sig { returns(T.nilable(::Stripe::QuoteService::UpdateParams::LineItem::PriceData)) }
-        def price_data; end
-        sig {
-          params(_price_data: T.nilable(::Stripe::QuoteService::UpdateParams::LineItem::PriceData)).returns(T.nilable(::Stripe::QuoteService::UpdateParams::LineItem::PriceData))
-         }
-        def price_data=(_price_data); end
+        attr_accessor :price_data
         # The quantity of the line item.
         sig { returns(T.nilable(Integer)) }
-        def quantity; end
-        sig { params(_quantity: T.nilable(Integer)).returns(T.nilable(Integer)) }
-        def quantity=(_quantity); end
+        attr_accessor :quantity
         # The tax rates which apply to the line item. When set, the `default_tax_rates` on the quote do not apply to this line item.
         sig { returns(T.nilable(T.any(String, T::Array[String]))) }
-        def tax_rates; end
-        sig {
-          params(_tax_rates: T.nilable(T.any(String, T::Array[String]))).returns(T.nilable(T.any(String, T::Array[String])))
-         }
-        def tax_rates=(_tax_rates); end
+        attr_accessor :tax_rates
         sig {
           params(discounts: T.nilable(T.any(String, T::Array[::Stripe::QuoteService::UpdateParams::LineItem::Discount])), id: T.nilable(String), price: T.nilable(String), price_data: T.nilable(::Stripe::QuoteService::UpdateParams::LineItem::PriceData), quantity: T.nilable(Integer), tax_rates: T.nilable(T.any(String, T::Array[String]))).void
          }
@@ -740,30 +498,16 @@ module Stripe
       class SubscriptionData < Stripe::RequestParams
         # The subscription's description, meant to be displayable to the customer. Use this field to optionally store an explanation of the subscription for rendering in Stripe surfaces and certain local payment methods UIs.
         sig { returns(T.nilable(String)) }
-        def description; end
-        sig { params(_description: T.nilable(String)).returns(T.nilable(String)) }
-        def description=(_description); end
+        attr_accessor :description
         # When creating a new subscription, the date of which the subscription schedule will start after the quote is accepted. The `effective_date` is ignored if it is in the past when the quote is accepted.
         sig { returns(T.nilable(T.any(String, T.any(String, Integer)))) }
-        def effective_date; end
-        sig {
-          params(_effective_date: T.nilable(T.any(String, T.any(String, Integer)))).returns(T.nilable(T.any(String, T.any(String, Integer))))
-         }
-        def effective_date=(_effective_date); end
+        attr_accessor :effective_date
         # Set of [key-value pairs](https://stripe.com/docs/api/metadata) that will set metadata on the subscription or subscription schedule when the quote is accepted. If a recurring price is included in `line_items`, this field will be passed to the resulting subscription's `metadata` field. If `subscription_data.effective_date` is used, this field will be passed to the resulting subscription schedule's `phases.metadata` field. Unlike object-level metadata, this field is declarative. Updates will clear prior values.
         sig { returns(T.nilable(T::Hash[String, String])) }
-        def metadata; end
-        sig {
-          params(_metadata: T.nilable(T::Hash[String, String])).returns(T.nilable(T::Hash[String, String]))
-         }
-        def metadata=(_metadata); end
+        attr_accessor :metadata
         # Integer representing the number of trial period days before the customer is charged for the first time.
         sig { returns(T.nilable(T.any(String, Integer))) }
-        def trial_period_days; end
-        sig {
-          params(_trial_period_days: T.nilable(T.any(String, Integer))).returns(T.nilable(T.any(String, Integer)))
-         }
-        def trial_period_days=(_trial_period_days); end
+        attr_accessor :trial_period_days
         sig {
           params(description: T.nilable(String), effective_date: T.nilable(T.any(String, T.any(String, Integer))), metadata: T.nilable(T::Hash[String, String]), trial_period_days: T.nilable(T.any(String, Integer))).void
          }
@@ -777,19 +521,13 @@ module Stripe
       class TransferData < Stripe::RequestParams
         # The amount that will be transferred automatically when the invoice is paid. If no amount is set, the full amount is transferred. There cannot be any line items with recurring prices when using this field.
         sig { returns(T.nilable(Integer)) }
-        def amount; end
-        sig { params(_amount: T.nilable(Integer)).returns(T.nilable(Integer)) }
-        def amount=(_amount); end
+        attr_accessor :amount
         # A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice total that will be transferred to the destination account. By default, the entire amount is transferred to the destination. There must be at least 1 line item with a recurring price to use this field.
         sig { returns(T.nilable(Float)) }
-        def amount_percent; end
-        sig { params(_amount_percent: T.nilable(Float)).returns(T.nilable(Float)) }
-        def amount_percent=(_amount_percent); end
+        attr_accessor :amount_percent
         # ID of an existing, connected Stripe account.
         sig { returns(String) }
-        def destination; end
-        sig { params(_destination: String).returns(String) }
-        def destination=(_destination); end
+        attr_accessor :destination
         sig {
           params(amount: T.nilable(Integer), amount_percent: T.nilable(Float), destination: String).void
          }
@@ -797,116 +535,60 @@ module Stripe
       end
       # The amount of the application fee (if any) that will be requested to be applied to the payment and transferred to the application owner's Stripe account. There cannot be any line items with recurring prices when using this field.
       sig { returns(T.nilable(T.any(String, Integer))) }
-      def application_fee_amount; end
-      sig {
-        params(_application_fee_amount: T.nilable(T.any(String, Integer))).returns(T.nilable(T.any(String, Integer)))
-       }
-      def application_fee_amount=(_application_fee_amount); end
+      attr_accessor :application_fee_amount
       # A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice total that will be transferred to the application owner's Stripe account. There must be at least 1 line item with a recurring price to use this field.
       sig { returns(T.nilable(T.any(String, Float))) }
-      def application_fee_percent; end
-      sig {
-        params(_application_fee_percent: T.nilable(T.any(String, Float))).returns(T.nilable(T.any(String, Float)))
-       }
-      def application_fee_percent=(_application_fee_percent); end
+      attr_accessor :application_fee_percent
       # Settings for automatic tax lookup for this quote and resulting invoices and subscriptions.
       sig { returns(T.nilable(::Stripe::QuoteService::UpdateParams::AutomaticTax)) }
-      def automatic_tax; end
-      sig {
-        params(_automatic_tax: T.nilable(::Stripe::QuoteService::UpdateParams::AutomaticTax)).returns(T.nilable(::Stripe::QuoteService::UpdateParams::AutomaticTax))
-       }
-      def automatic_tax=(_automatic_tax); end
+      attr_accessor :automatic_tax
       # Either `charge_automatically`, or `send_invoice`. When charging automatically, Stripe will attempt to pay invoices at the end of the subscription cycle or at invoice finalization using the default payment method attached to the subscription or customer. When sending an invoice, Stripe will email your customer an invoice with payment instructions and mark the subscription as `active`. Defaults to `charge_automatically`.
       sig { returns(T.nilable(String)) }
-      def collection_method; end
-      sig { params(_collection_method: T.nilable(String)).returns(T.nilable(String)) }
-      def collection_method=(_collection_method); end
+      attr_accessor :collection_method
       # The customer for which this quote belongs to. A customer is required before finalizing the quote. Once specified, it cannot be changed.
       sig { returns(T.nilable(String)) }
-      def customer; end
-      sig { params(_customer: T.nilable(String)).returns(T.nilable(String)) }
-      def customer=(_customer); end
+      attr_accessor :customer
       # The tax rates that will apply to any line item that does not have `tax_rates` set.
       sig { returns(T.nilable(T.any(String, T::Array[String]))) }
-      def default_tax_rates; end
-      sig {
-        params(_default_tax_rates: T.nilable(T.any(String, T::Array[String]))).returns(T.nilable(T.any(String, T::Array[String])))
-       }
-      def default_tax_rates=(_default_tax_rates); end
+      attr_accessor :default_tax_rates
       # A description that will be displayed on the quote PDF.
       sig { returns(T.nilable(String)) }
-      def description; end
-      sig { params(_description: T.nilable(String)).returns(T.nilable(String)) }
-      def description=(_description); end
+      attr_accessor :description
       # The discounts applied to the quote.
       sig {
         returns(T.nilable(T.any(String, T::Array[::Stripe::QuoteService::UpdateParams::Discount])))
        }
-      def discounts; end
-      sig {
-        params(_discounts: T.nilable(T.any(String, T::Array[::Stripe::QuoteService::UpdateParams::Discount]))).returns(T.nilable(T.any(String, T::Array[::Stripe::QuoteService::UpdateParams::Discount])))
-       }
-      def discounts=(_discounts); end
+      attr_accessor :discounts
       # Specifies which fields in the response should be expanded.
       sig { returns(T.nilable(T::Array[String])) }
-      def expand; end
-      sig { params(_expand: T.nilable(T::Array[String])).returns(T.nilable(T::Array[String])) }
-      def expand=(_expand); end
+      attr_accessor :expand
       # A future timestamp on which the quote will be canceled if in `open` or `draft` status. Measured in seconds since the Unix epoch.
       sig { returns(T.nilable(Integer)) }
-      def expires_at; end
-      sig { params(_expires_at: T.nilable(Integer)).returns(T.nilable(Integer)) }
-      def expires_at=(_expires_at); end
+      attr_accessor :expires_at
       # A footer that will be displayed on the quote PDF.
       sig { returns(T.nilable(String)) }
-      def footer; end
-      sig { params(_footer: T.nilable(String)).returns(T.nilable(String)) }
-      def footer=(_footer); end
+      attr_accessor :footer
       # A header that will be displayed on the quote PDF.
       sig { returns(T.nilable(String)) }
-      def header; end
-      sig { params(_header: T.nilable(String)).returns(T.nilable(String)) }
-      def header=(_header); end
+      attr_accessor :header
       # All invoices will be billed using the specified settings.
       sig { returns(T.nilable(::Stripe::QuoteService::UpdateParams::InvoiceSettings)) }
-      def invoice_settings; end
-      sig {
-        params(_invoice_settings: T.nilable(::Stripe::QuoteService::UpdateParams::InvoiceSettings)).returns(T.nilable(::Stripe::QuoteService::UpdateParams::InvoiceSettings))
-       }
-      def invoice_settings=(_invoice_settings); end
+      attr_accessor :invoice_settings
       # A list of line items the customer is being quoted for. Each line item includes information about the product, the quantity, and the resulting cost.
       sig { returns(T.nilable(T::Array[::Stripe::QuoteService::UpdateParams::LineItem])) }
-      def line_items; end
-      sig {
-        params(_line_items: T.nilable(T::Array[::Stripe::QuoteService::UpdateParams::LineItem])).returns(T.nilable(T::Array[::Stripe::QuoteService::UpdateParams::LineItem]))
-       }
-      def line_items=(_line_items); end
+      attr_accessor :line_items
       # Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`.
       sig { returns(T.nilable(T::Hash[String, String])) }
-      def metadata; end
-      sig {
-        params(_metadata: T.nilable(T::Hash[String, String])).returns(T.nilable(T::Hash[String, String]))
-       }
-      def metadata=(_metadata); end
+      attr_accessor :metadata
       # The account on behalf of which to charge.
       sig { returns(T.nilable(String)) }
-      def on_behalf_of; end
-      sig { params(_on_behalf_of: T.nilable(String)).returns(T.nilable(String)) }
-      def on_behalf_of=(_on_behalf_of); end
+      attr_accessor :on_behalf_of
       # When creating a subscription or subscription schedule, the specified configuration data will be used. There must be at least one line item with a recurring price for a subscription or subscription schedule to be created. A subscription schedule is created if `subscription_data[effective_date]` is present and in the future, otherwise a subscription is created.
       sig { returns(T.nilable(::Stripe::QuoteService::UpdateParams::SubscriptionData)) }
-      def subscription_data; end
-      sig {
-        params(_subscription_data: T.nilable(::Stripe::QuoteService::UpdateParams::SubscriptionData)).returns(T.nilable(::Stripe::QuoteService::UpdateParams::SubscriptionData))
-       }
-      def subscription_data=(_subscription_data); end
+      attr_accessor :subscription_data
       # The data with which to automatically create a Transfer for each of the invoices.
       sig { returns(T.nilable(T.any(String, ::Stripe::QuoteService::UpdateParams::TransferData))) }
-      def transfer_data; end
-      sig {
-        params(_transfer_data: T.nilable(T.any(String, ::Stripe::QuoteService::UpdateParams::TransferData))).returns(T.nilable(T.any(String, ::Stripe::QuoteService::UpdateParams::TransferData)))
-       }
-      def transfer_data=(_transfer_data); end
+      attr_accessor :transfer_data
       sig {
         params(application_fee_amount: T.nilable(T.any(String, Integer)), application_fee_percent: T.nilable(T.any(String, Float)), automatic_tax: T.nilable(::Stripe::QuoteService::UpdateParams::AutomaticTax), collection_method: T.nilable(String), customer: T.nilable(String), default_tax_rates: T.nilable(T.any(String, T::Array[String])), description: T.nilable(String), discounts: T.nilable(T.any(String, T::Array[::Stripe::QuoteService::UpdateParams::Discount])), expand: T.nilable(T::Array[String]), expires_at: T.nilable(Integer), footer: T.nilable(String), header: T.nilable(String), invoice_settings: T.nilable(::Stripe::QuoteService::UpdateParams::InvoiceSettings), line_items: T.nilable(T::Array[::Stripe::QuoteService::UpdateParams::LineItem]), metadata: T.nilable(T::Hash[String, String]), on_behalf_of: T.nilable(String), subscription_data: T.nilable(::Stripe::QuoteService::UpdateParams::SubscriptionData), transfer_data: T.nilable(T.any(String, ::Stripe::QuoteService::UpdateParams::TransferData))).void
        }
@@ -934,41 +616,31 @@ module Stripe
     class AcceptParams < Stripe::RequestParams
       # Specifies which fields in the response should be expanded.
       sig { returns(T.nilable(T::Array[String])) }
-      def expand; end
-      sig { params(_expand: T.nilable(T::Array[String])).returns(T.nilable(T::Array[String])) }
-      def expand=(_expand); end
+      attr_accessor :expand
       sig { params(expand: T.nilable(T::Array[String])).void }
       def initialize(expand: nil); end
     end
     class CancelParams < Stripe::RequestParams
       # Specifies which fields in the response should be expanded.
       sig { returns(T.nilable(T::Array[String])) }
-      def expand; end
-      sig { params(_expand: T.nilable(T::Array[String])).returns(T.nilable(T::Array[String])) }
-      def expand=(_expand); end
+      attr_accessor :expand
       sig { params(expand: T.nilable(T::Array[String])).void }
       def initialize(expand: nil); end
     end
     class FinalizeQuoteParams < Stripe::RequestParams
       # Specifies which fields in the response should be expanded.
       sig { returns(T.nilable(T::Array[String])) }
-      def expand; end
-      sig { params(_expand: T.nilable(T::Array[String])).returns(T.nilable(T::Array[String])) }
-      def expand=(_expand); end
+      attr_accessor :expand
       # A future timestamp on which the quote will be canceled if in `open` or `draft` status. Measured in seconds since the Unix epoch.
       sig { returns(T.nilable(Integer)) }
-      def expires_at; end
-      sig { params(_expires_at: T.nilable(Integer)).returns(T.nilable(Integer)) }
-      def expires_at=(_expires_at); end
+      attr_accessor :expires_at
       sig { params(expand: T.nilable(T::Array[String]), expires_at: T.nilable(Integer)).void }
       def initialize(expand: nil, expires_at: nil); end
     end
     class PdfParams < Stripe::RequestParams
       # Specifies which fields in the response should be expanded.
       sig { returns(T.nilable(T::Array[String])) }
-      def expand; end
-      sig { params(_expand: T.nilable(T::Array[String])).returns(T.nilable(T::Array[String])) }
-      def expand=(_expand); end
+      attr_accessor :expand
       sig { params(expand: T.nilable(T::Array[String])).void }
       def initialize(expand: nil); end
     end
